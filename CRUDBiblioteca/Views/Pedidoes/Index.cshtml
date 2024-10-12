@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Pedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Pedidos</h1>
+
+<p>
+    <!-- Botón "Crear Nuevo Pedido" personalizado con estilo de Bootstrap y un ícono -->
+    <a class="btn btn-primary" asp-action="Create">
+        <i class="fas fa-plus"></i> Agregar Pedido
+    </a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPedido)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaPedido)
+                </td>
+                <td>
+                    <!-- Botones de acción personalizados con colores e íconos -->
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.PedidoId">
+                        <i class="fas fa-pencil-alt"></i> Editar
+                    </a>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.PedidoId">
+                        <i class="fas fa-info-circle"></i> Detalles
+                    </a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.PedidoId">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
